@@ -1,0 +1,10 @@
+{
+    "salmon_version": "1.2.1",
+    "index": "rat_transcriptome/rat_salmon_index",
+    "libType": "A",
+    "mates1": "fastq/X12663/X12663_SmithS_H9c2-Cells_CAB-4-nM_48-Hrs_V1Q_1_S8_L002_R1_001.fastq.gz",
+    "mates2": "fastq/X12663/X12663_SmithS_H9c2-Cells_CAB-4-nM_48-Hrs_V1Q_1_S8_L002_R2_001.fastq.gz",
+    "threads": "8",
+    "output": "quants/X12663_quant",
+    "auxDir": "aux_info"
+}

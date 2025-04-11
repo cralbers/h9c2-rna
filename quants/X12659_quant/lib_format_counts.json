@@ -1,0 +1,22 @@
+{
+    "read_files": "[ fastq/X12659/X12659_SmithS_H9c2-Cells_DMSO_48-Hrs_V1Q_1_S4_L002_R1_001.fastq.gz, fastq/X12659/X12659_SmithS_H9c2-Cells_DMSO_48-Hrs_V1Q_1_S4_L002_R2_001.fastq.gz]",
+    "expected_format": "ISR",
+    "compatible_fragment_ratio": 1.0,
+    "num_compatible_fragments": 17901282,
+    "num_assigned_fragments": 17901282,
+    "num_frags_with_concordant_consistent_mappings": 17101923,
+    "num_frags_with_inconsistent_or_orphan_mappings": 802198,
+    "strand_mapping_bias": 0.00001754157924382111,
+    "MSF": 0,
+    "OSF": 0,
+    "ISF": 300,
+    "MSR": 0,
+    "OSR": 0,
+    "ISR": 17101923,
+    "SF": 346814,
+    "SR": 455084,
+    "MU": 0,
+    "OU": 0,
+    "IU": 0,
+    "U": 0
+}
