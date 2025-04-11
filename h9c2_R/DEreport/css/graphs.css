@@ -1,0 +1,134 @@
+div.graph { position: relative; }
+
+div.tooltip {
+  position: absolute;
+  z-index: 99;
+  display: none;
+  background-color: rgba(0,0,0,0.8);
+  font-family: sans-serif;
+  font-size: 12px;
+  color: white;
+  padding: 4px;
+}
+
+.buttons .axis,
+.brushSlider .axis {
+  font: 10px sans-serif;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+.buttons .axis .domain,
+.brushSlider .axis .domain {
+  fill: none;
+  stroke: #000;
+  stroke-opacity: .3;
+  stroke-width: 10px;
+  stroke-linecap: round;
+}
+
+.buttons .axis .halo,
+.brushSlider .axis .halo {
+  fill: none;
+  stroke: #ddd;
+  stroke-width: 8px;
+  stroke-linecap: round;
+}
+
+.buttons .handle,
+.brushSlider .handle {
+  fill: #fff;
+  stroke: #000;
+  stroke-opacity: .5;
+  stroke-width: 1.2px;
+}
+.brushSlider .extent {
+  fill-opacity: 0.15;
+  fill: #333;
+}
+.brushSlider .resize > rect {
+  fill: #fff;
+  stroke: #000;
+  stroke-opacity: .5;
+  stroke-width: 1.2px;
+}
+
+#barplot .controls {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px 16px;
+}
+#barplot .controls .option {
+  line-height: 1.2;
+  padding: 3px;
+  margin: 4px 0; 
+  text-align: center;
+  background: #888;
+  color: #fff;
+  border: solid 2px rgba(0,0,0,0);
+  cursor: pointer;
+  border-radius: 2px;
+  font-weight: bold;
+  font-size: 10px;
+}
+
+div.tab-wrap { padding-bottom: 10px; }
+div.tab-wrap>div:first-child { text-align: right; border-top: solid 1px #888; }
+div.tab-wrap>div:first-child>div { position: relative; top: -27px; display: inline-block; padding: 4px 8px; margin: 0 2px; border: solid 1px #888; border-radius: 5px 5px 0 0; background: #fff; width: 100px; text-align: center; cursor: pointer; font-size: 12px; }
+div.tables { overflow-y: auto; clear: both; }
+div.switch { width: 30px; height: 21px; margin: 5px; background-color: #888; border-radius: 5px; float: right; position: relative; top: -28px; margin-right: 10px; cursor: pointer; }
+
+#symheatmap div.controls { position:absolute; left:0; top:0; padding: 0 10px 10px; background-color: rgba(255, 255, 255, 0.8); }
+#symheatmap div.controls>p { margin: 20px 0 10px 0; }
+#symheatmap div.controls>select { background:#fff; }
+
+.hidden { display: none; }
+.caption { margin-bottom: 5rem; }
+
+#information { margin-bottom: 30px; }
+
+.full-width::after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    line-height: 0;
+    visibility: hidden;
+}
+
+body>header, body>footer>section {
+  background-color: #002633 !important;
+}
+
+body>footer>section p {
+ color: #7697A2;
+}
+
+body>header h1 {
+  padding: 30px 0 15px 10px;
+  margin: 0;
+  color: #fff;  
+}
+
+.loading {
+  padding: 12rem 0 18rem 0;
+}
+
+ul.export-menu {
+  text-align: center;
+  background: #ffffff;
+  border: 1px solid #777777;
+  border-radius: 5px;
+  list-style-type: none;
+  display: inline-block;
+  width: 50px;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+ul.export-menu > li {
+  cursor: pointer;
+}
