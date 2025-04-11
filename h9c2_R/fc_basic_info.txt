@@ -1,0 +1,164 @@
+> fc <- featureCounts(files=filelist, annot.ext=genes_file, isGTFAnnotationFile=TRUE, isPairedEnd=TRUE)
+
+        ==========     _____ _    _ ____  _____  ______          _____
+        =====         / ____| |  | |  _ \|  __ \|  ____|   /\   |  __ \
+          =====      | (___ | |  | | |_) | |__) | |__     /  \  | |  | |
+            ====      \___ \| |  | |  _ <|  _  /|  __|   / /\ \ | |  | |
+              ====    ____) | |__| | |_) | | \ \| |____ / ____ \| |__| |
+        ==========   |_____/ \____/|____/|_|  \_\______/_/    \_\_____/
+       Rsubread 2.20.0
+
+//========================== featureCounts setting ===========================\\
+||                                                                            ||
+||             Input files : 18 BAM files                                     ||
+||                                                                            ||
+||                           X12656_SmithS_H9c2-Cells_DMSO_48-Hrs_V1Q_1_S ... ||
+||                           X12657_SmithS_H9c2-Cells_DMSO_48-Hrs_V1Q_1_S ... ||
+||                           X12658_SmithS_H9c2-Cells_DMSO_48-Hrs_V1Q_1_S ... ||
+||                           X12659_SmithS_H9c2-Cells_DMSO_48-Hrs_V1Q_1_S ... ||
+||                           X12660_SmithS_H9c2-Cells_DMSO_48-Hrs_V1Q_1_S ... ||
+||                           X12661_SmithS_H9c2-Cells_DMSO_48-Hrs_V1Q_1_S ... ||
+||                           X12662_SmithS_H9c2-Cells_CAB-4-nM_48-Hrs_V1Q ... ||
+||                           X12663_SmithS_H9c2-Cells_CAB-4-nM_48-Hrs_V1Q ... ||
+||                           X12664_SmithS_H9c2-Cells_CAB-4-nM_48-Hrs_V1Q ... ||
+||                           X12665_SmithS_H9c2-Cells_CAB-4-nM_48-Hrs_V1Q ... ||
+||                           X12666_SmithS_H9c2-Cells_CAB-4-nM_48-Hrs_V1Q ... ||
+||                           X12667_SmithS_H9c2-Cells_CAB-4-nM_48-Hrs_V1Q ... ||
+||                           X12668_SmithS_H9c2-Cells_LEN_25-nM_48-Hrs_V1 ... ||
+||                           X12669_SmithS_H9c2-Cells_LEN_25-nM_48-Hrs_V1 ... ||
+||                           X12670_SmithS_H9c2-Cells_LEN_25-nM_48-Hrs_V1 ... ||
+||                           X12671_SmithS_H9c2-Cells_LEN_25-nM_48-Hrs_V1 ... ||
+||                           X12672_SmithS_H9c2-Cells_LEN_25-nM_48-Hrs_V1 ... ||
+||                           X12673_SmithS_H9c2-Cells_LEN_25-nM_48-Hrs_V1 ... ||
+||                                                                            ||
+||              Paired-end : yes                                              ||
+||        Count read pairs : yes                                              ||
+||              Annotation : rn6.ensGene.gtf (GTF)                            ||
+||      Dir for temp files : .                                                ||
+||                 Threads : 1                                                ||
+||                   Level : meta-feature level                               ||
+||      Multimapping reads : counted                                          ||
+|| Multi-overlapping reads : not counted                                      ||
+||   Min overlapping bases : 1                                                ||
+||                                                                            ||
+\\============================================================================//
+
+//================================= Running ==================================\\
+||                                                                            ||
+|| Load annotation file rn6.ensGene.gtf ...                                   ||
+||    Features : 311360                                                       ||
+||    Meta-features : 32883                                                   ||
+||    Chromosomes/contigs : 162                                               ||
+||                                                                            ||
+|| Process BAM file X12656_SmithS_H9c2-Cells_DMSO_48-Hrs_V1Q_1_S1_L002_Al ... ||
+||    Paired-end reads are included.                                          ||
+||    Total alignments : 27874777                                             ||
+||    Successfully assigned alignments : 21885878 (78.5%)                     ||
+||    Running time : 0.79 minutes                                             ||
+||                                                                            ||
+|| Process BAM file X12657_SmithS_H9c2-Cells_DMSO_48-Hrs_V1Q_1_S2_L002_Al ... ||
+||    Paired-end reads are included.                                          ||
+||    Total alignments : 28995343                                             ||
+||    Successfully assigned alignments : 23507253 (81.1%)                     ||
+||    Running time : 0.81 minutes                                             ||
+||                                                                            ||
+|| Process BAM file X12658_SmithS_H9c2-Cells_DMSO_48-Hrs_V1Q_1_S3_L002_Al ... ||
+||    Paired-end reads are included.                                          ||
+||    Total alignments : 31120207                                             ||
+||    Successfully assigned alignments : 24844659 (79.8%)                     ||
+||    Running time : 0.87 minutes                                             ||
+||                                                                            ||
+|| Process BAM file X12659_SmithS_H9c2-Cells_DMSO_48-Hrs_V1Q_1_S4_L002_Al ... ||
+||    Paired-end reads are included.                                          ||
+||    Total alignments : 27598682                                             ||
+||    Successfully assigned alignments : 22184567 (80.4%)                     ||
+||    Running time : 0.77 minutes                                             ||
+||                                                                            ||
+|| Process BAM file X12660_SmithS_H9c2-Cells_DMSO_48-Hrs_V1Q_1_S5_L002_Al ... ||
+||    Paired-end reads are included.                                          ||
+||    Total alignments : 24991515                                             ||
+||    Successfully assigned alignments : 20266152 (81.1%)                     ||
+||    Running time : 0.69 minutes                                             ||
+||                                                                            ||
+|| Process BAM file X12661_SmithS_H9c2-Cells_DMSO_48-Hrs_V1Q_1_S6_L002_Al ... ||
+||    Paired-end reads are included.                                          ||
+||    Total alignments : 28863281                                             ||
+||    Successfully assigned alignments : 23662197 (82.0%)                     ||
+||    Running time : 0.80 minutes                                             ||
+||                                                                            ||
+|| Process BAM file X12662_SmithS_H9c2-Cells_CAB-4-nM_48-Hrs_V1Q_1_S7_L00 ... ||
+||    Paired-end reads are included.                                          ||
+||    Total alignments : 29658133                                             ||
+||    Successfully assigned alignments : 23460611 (79.1%)                     ||
+||    Running time : 0.81 minutes                                             ||
+||                                                                            ||
+|| Process BAM file X12663_SmithS_H9c2-Cells_CAB-4-nM_48-Hrs_V1Q_1_S8_L00 ... ||
+||    Paired-end reads are included.                                          ||
+||    Total alignments : 23899109                                             ||
+||    Successfully assigned alignments : 18795159 (78.6%)                     ||
+||    Running time : 0.64 minutes                                             ||
+||                                                                            ||
+|| Process BAM file X12664_SmithS_H9c2-Cells_CAB-4-nM_48-Hrs_V1Q_1_S9_L00 ... ||
+||    Paired-end reads are included.                                          ||
+||    Total alignments : 29412949                                             ||
+||    Successfully assigned alignments : 23062822 (78.4%)                     ||
+||    Running time : 0.78 minutes                                             ||
+||                                                                            ||
+|| Process BAM file X12665_SmithS_H9c2-Cells_CAB-4-nM_48-Hrs_V1Q_1_S10_L0 ... ||
+||    Paired-end reads are included.                                          ||
+||    Total alignments : 27834076                                             ||
+||    Successfully assigned alignments : 21714616 (78.0%)                     ||
+||    Running time : 0.76 minutes                                             ||
+||                                                                            ||
+|| Process BAM file X12666_SmithS_H9c2-Cells_CAB-4-nM_48-Hrs_V1Q_1_S11_L0 ... ||
+||    Paired-end reads are included.                                          ||
+||    Total alignments : 27458396                                             ||
+||    Successfully assigned alignments : 21559996 (78.5%)                     ||
+||    Running time : 0.73 minutes                                             ||
+||                                                                            ||
+|| Process BAM file X12667_SmithS_H9c2-Cells_CAB-4-nM_48-Hrs_V1Q_1_S12_L0 ... ||
+||    Paired-end reads are included.                                          ||
+||    Total alignments : 24190982                                             ||
+||    Successfully assigned alignments : 19156465 (79.2%)                     ||
+||    Running time : 0.64 minutes                                             ||
+||                                                                            ||
+|| Process BAM file X12668_SmithS_H9c2-Cells_LEN_25-nM_48-Hrs_V1Q_1_S13_L ... ||
+||    Paired-end reads are included.                                          ||
+||    Total alignments : 27169258                                             ||
+||    Successfully assigned alignments : 21889102 (80.6%)                     ||
+||    Running time : 0.74 minutes                                             ||
+||                                                                            ||
+|| Process BAM file X12669_SmithS_H9c2-Cells_LEN_25-nM_48-Hrs_V1Q_1_S14_L ... ||
+||    Paired-end reads are included.                                          ||
+||    Total alignments : 24701935                                             ||
+||    Successfully assigned alignments : 19593304 (79.3%)                     ||
+||    Running time : 0.68 minutes                                             ||
+||                                                                            ||
+|| Process BAM file X12670_SmithS_H9c2-Cells_LEN_25-nM_48-Hrs_V1Q_1_S15_L ... ||
+||    Paired-end reads are included.                                          ||
+||    Total alignments : 25960605                                             ||
+||    Successfully assigned alignments : 21065300 (81.1%)                     ||
+||    Running time : 0.70 minutes                                             ||
+||                                                                            ||
+|| Process BAM file X12671_SmithS_H9c2-Cells_LEN_25-nM_48-Hrs_V1Q_1_S16_L ... ||
+||    Paired-end reads are included.                                          ||
+||    Total alignments : 27139083                                             ||
+||    Successfully assigned alignments : 21876480 (80.6%)                     ||
+||    Running time : 0.73 minutes                                             ||
+||                                                                            ||
+|| Process BAM file X12672_SmithS_H9c2-Cells_LEN_25-nM_48-Hrs_V1Q_1_S17_L ... ||
+||    Paired-end reads are included.                                          ||
+||    Total alignments : 32558050                                             ||
+||    Successfully assigned alignments : 26183386 (80.4%)                     ||
+||    Running time : 0.89 minutes                                             ||
+||                                                                            ||
+|| Process BAM file X12673_SmithS_H9c2-Cells_LEN_25-nM_48-Hrs_V1Q_1_S18_L ... ||
+||    Paired-end reads are included.                                          ||
+||    Total alignments : 36298602                                             ||
+||    Successfully assigned alignments : 29500830 (81.3%)                     ||
+||    Running time : 1.01 minutes                                             ||
+||                                                                            ||
+|| Write the final count table.                                               ||
+|| Write the read assignment summary.                                         ||
+||                                                                            ||
+\\============================================================================//

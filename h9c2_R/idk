@@ -1,0 +1,41 @@
+workdir <- '/users/PAS2905/coraalbers/h9c2_R'
+setwd(workdir)
+getwd()
+
+library(Rsubread)
+library(limma)
+library(edgeR)
+
+bamdir <- '/fs/ess/PAS2905/ILMN_2341_Yan_OSUCM_GSR2Pool_Nov2024_SmithS_BAM-transfer'
+filelist <- list.files(path=bamdir, pattern="\\.bam$", full.names=TRUE)
+
+genes_file <- "/fs/ess/PAS2905/rn6.refGene.gtf.gz"
+genes <- read.table(genes_file, header=TRUE, sep="\t")
+
+fc <- featureCounts(files=filelist,
+annot.ext=genes_file,
+isGTFAnnotationFile=TRUE,
+GTF.featureType="exon",
+useMetaFeatures=FALSE,
+allowMultiOverlap=FALSE,
+largestOverlap=FALSE,
+countMultiMappingReads=FALSE,
+isPairedEnd=TRUE,
+countReadPairs=TRUE,
+fraction=FALSE,
+nthreads=8)
+
+save(fc, file = "fc_refgene_nomm.RData")
+
+outdir <- paste(workdir,'/', 'counts', '/', sep='')
+# dir.create(outdir)
+fileroot <- "h9c2"
+
+write.table(x=data.frame(fc$annotation[,c("GeneID", "Length")],
+    fc$counts,stringsAsFactors=FALSE),
+    paste0(outdir, fileroot, file="_fc_frac_gene_rnaseq.txt"),
+    quote=FALSE,sep="\t",
+    row.names=FALSE)
+
+
+fc <- featureCounts(files=filelist, annot.ext=genes_file, isGTFAnnotationFile=TRUE, isPairedEnd=TRUE)
