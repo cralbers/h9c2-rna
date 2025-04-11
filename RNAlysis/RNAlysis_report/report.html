@@ -1,0 +1,322 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="assets/vis-network.min.css"/>
+            <script src="assets/vis-network.min.jscript"></script>
+            
+        
+
+
+
+        <link rel="stylesheet" href="assets/bootstrap.min.css"/>
+        <script src="assets/bootstrap.bundle.min.jscript"></script>
+
+
+        <center>
+          <h1 style="font-size:1.5em;">Data analysis report (<i>RNAlysis</i> version 4.1.0)</h1>
+        <div class="text-center my-4">
+    <a href="https://guyteichman.github.io/RNAlysis/build/analysis_report.html" class="btn btn-primary" target="_blank"
+       rel="noopener noreferrer">
+        <img src="assets/question-circle.svg" alt="Help Icon" width="16" height="16" class="me-2">
+        How do I use this analysis report?
+    </a>
+</div>
+
+</center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 600px;
+                 background-color: #ffffff;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+             /* position absolute is important and the container has to be relative or absolute as well. */
+          div.popup {
+                 position:absolute;
+                 top:0px;
+                 left:0px;
+                 display:none;
+                 background-color:#f5f4ed;
+                 -moz-border-radius: 3px;
+                 -webkit-border-radius: 3px;
+                 border-radius: 3px;
+                 border: 1px solid #808074;
+                 box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+          }
+
+          /* hide the original tooltip */
+          .vis-tooltip {
+            display:none;
+          }
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              var highlightActive = false;
+// This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"group": "root", "id": 0, "label": "Started RNAlysis session", "shape": null, "size": 10, "title": "\u003ci\u003eRNAlysis\u003c/i\u003e version 4.1.0\u003cbr\u003e\u003ca href=\"data/session.rnal\" target=\"_blank\" rel=\"noopener noreferrer\"\u003eOpen RNAlysis session\u003c/a\u003e"}, {"group": "count", "id": 1, "label": "Loaded Count matrix\n\u0027h9c2 cab\u0027 (#1)", "shape": null, "size": 10, "title": "Count matrix:\u003cbr\u003e\"h9c2 cab\"\u003cbr\u003e\u003cstyle type=\"text/css\"\u003e\n#T_2b782 td {\n  border: 1px solid grey;\n  border-collapse: collapse;\n}\n#T_2b782 th {\n  border: 1px solid grey;\n  border-collapse: collapse;\n}\n\u003c/style\u003e\n\u003ctable id=\"T_2b782\"\u003e\n  \u003cthead\u003e\n    \u003ctr\u003e\n      \u003cth class=\"blank level0\" \u003e\u0026nbsp;\u003c/th\u003e\n      \u003cth id=\"T_2b782_level0_col0\" class=\"col_heading level0 col0\" \u003eX12656\u003c/th\u003e\n      \u003cth id=\"T_2b782_level0_col1\" class=\"col_heading level0 col1\" \u003eX12657\u003c/th\u003e\n      \u003cth id=\"T_2b782_level0_col2\" class=\"col_heading level0 col2\" \u003eX12658\u003c/th\u003e\n      \u003cth id=\"T_2b782_level0_col3\" class=\"col_heading level0 col3\" \u003eX12659\u003c/th\u003e\n    \u003c/tr\u003e\n  \u003c/thead\u003e\n  \u003ctbody\u003e\n    \u003ctr\u003e\n      \u003cth id=\"T_2b782_level0_row0\" class=\"row_heading level0 row0\" \u003eENSRNOG00000040300\u003c/th\u003e\n      \u003ctd id=\"T_2b782_row0_col0\" class=\"data row0 col0\" \u003e1.22\u003c/td\u003e\n      \u003ctd id=\"T_2b782_row0_col1\" class=\"data row0 col1\" \u003e0.85\u003c/td\u003e\n      \u003ctd id=\"T_2b782_row0_col2\" class=\"data row0 col2\" \u003e1.32\u003c/td\u003e\n      \u003ctd id=\"T_2b782_row0_col3\" class=\"data row0 col3\" \u003e1.09\u003c/td\u003e\n    \u003c/tr\u003e\n    \u003ctr\u003e\n      \u003cth id=\"T_2b782_level0_row1\" class=\"row_heading level0 row1\" \u003eENSRNOG00000061316\u003c/th\u003e\n      \u003ctd id=\"T_2b782_row1_col0\" class=\"data row1 col0\" \u003e148.17\u003c/td\u003e\n      \u003ctd id=\"T_2b782_row1_col1\" class=\"data row1 col1\" \u003e130.77\u003c/td\u003e\n      \u003ctd id=\"T_2b782_row1_col2\" class=\"data row1 col2\" \u003e134.95\u003c/td\u003e\n      \u003ctd id=\"T_2b782_row1_col3\" class=\"data row1 col3\" \u003e122.93\u003c/td\u003e\n    \u003c/tr\u003e\n    \u003ctr\u003e\n      \u003cth id=\"T_2b782_level0_row2\" class=\"row_heading level0 row2\" \u003eENSRNOG00000023659\u003c/th\u003e\n      \u003ctd id=\"T_2b782_row2_col0\" class=\"data row2 col0\" \u003e0.44\u003c/td\u003e\n      \u003ctd id=\"T_2b782_row2_col1\" class=\"data row2 col1\" \u003e0.49\u003c/td\u003e\n      \u003ctd id=\"T_2b782_row2_col2\" class=\"data row2 col2\" \u003e0.38\u003c/td\u003e\n      \u003ctd id=\"T_2b782_row2_col3\" class=\"data row2 col3\" \u003e0.95\u003c/td\u003e\n    \u003c/tr\u003e\n    \u003ctr\u003e\n      \u003cth id=\"T_2b782_level0_row3\" class=\"row_heading level0 row3\" \u003eENSRNOG00000029897\u003c/th\u003e\n      \u003ctd id=\"T_2b782_row3_col0\" class=\"data row3 col0\" \u003e1.27\u003c/td\u003e\n      \u003ctd id=\"T_2b782_row3_col1\" class=\"data row3 col1\" \u003e0.71\u003c/td\u003e\n      \u003ctd id=\"T_2b782_row3_col2\" class=\"data row3 col2\" \u003e1.32\u003c/td\u003e\n      \u003ctd id=\"T_2b782_row3_col3\" class=\"data row3 col3\" \u003e0.57\u003c/td\u003e\n    \u003c/tr\u003e\n    \u003ctr\u003e\n      \u003cth id=\"T_2b782_level0_row4\" class=\"row_heading level0 row4\" \u003eENSRNOG00000014303\u003c/th\u003e\n      \u003ctd id=\"T_2b782_row4_col0\" class=\"data row4 col0\" \u003e40.00\u003c/td\u003e\n      \u003ctd id=\"T_2b782_row4_col1\" class=\"data row4 col1\" \u003e43.10\u003c/td\u003e\n      \u003ctd id=\"T_2b782_row4_col2\" class=\"data row4 col2\" \u003e46.21\u003c/td\u003e\n      \u003ctd id=\"T_2b782_row4_col3\" class=\"data row4 col3\" \u003e49.86\u003c/td\u003e\n    \u003c/tr\u003e\n  \u003c/tbody\u003e\n\u003c/table\u003e\n13864 rows, 12 columns\u003cbr\u003e\u003ca href=\"data/1_h9c2-cab.csv\" target=\"_blank\" rel=\"noopener noreferrer\"\u003eOpen file\u003c/a\u003e"}, {"group": "function", "id": 2, "label": "K-Means clustering", "shape": null, "size": 10, "title": "split_kmeans(n_clusters = \u0027gap\u0027, \u003cbr\u003en_init = 3, \u003cbr\u003emax_iter = 300, \u003cbr\u003erandom_seed = 50, \u003cbr\u003epower_transform = True, \u003cbr\u003eplot_style = \u0027all\u0027, \u003cbr\u003esplit_plots = False, \u003cbr\u003emax_n_clusters_estimate = \u0027auto\u0027, \u003cbr\u003eparallel_backend = \u0027multiprocessing\u0027, \u003cbr\u003egui_mode = True)"}, {"group": "other", "id": 3, "label": "\u0027K-Means clustering\u0027\ngraph (#3)", "shape": null, "size": 10, "title": "\u003cimg src=\"data/3_K-Means-clustering-graph.svg\" alt=\"Figure\" height=\"400\"\u003e\u003cbr\u003e\u003ca href=\"data/3_K-Means-clustering-graph.svg\" target=\"_blank\" rel=\"noopener noreferrer\"\u003eOpen file\u003c/a\u003e"}, {"group": "other", "id": 4, "label": "\u0027K-Means clustering\u0027\ngraph (#4)", "shape": null, "size": 10, "title": "\u003cimg src=\"data/4_K-Means-clustering-graph.svg\" alt=\"Figure\" height=\"400\"\u003e\u003cbr\u003e\u003ca href=\"data/4_K-Means-clustering-graph.svg\" target=\"_blank\" rel=\"noopener noreferrer\"\u003eOpen file\u003c/a\u003e"}, {"group": "other", "id": 5, "label": "\u0027K-Means clustering\u0027\ngraph (#5)", "shape": null, "size": 10, "title": "\u003cimg src=\"data/5_K-Means-clustering-graph.svg\" alt=\"Figure\" height=\"400\"\u003e\u003cbr\u003e\u003ca href=\"data/5_K-Means-clustering-graph.svg\" target=\"_blank\" rel=\"noopener noreferrer\"\u003eOpen file\u003c/a\u003e"}, {"fixed": true, "font": {"size": 16}, "group": "count", "id": "Count matrix", "is_legend": true, "label": "Count matrix", "physics": false, "shape": null, "size": 10, "widthConstraint": 100, "x": -750, "y": -350}, {"fixed": true, "font": {"size": 16}, "group": "diffexp", "id": "Differential expression", "is_legend": true, "label": "Differential expression", "physics": false, "shape": null, "size": 10, "widthConstraint": 100, "x": -750, "y": -275}, {"fixed": true, "font": {"size": 16}, "group": "foldchange", "id": "Fold change", "is_legend": true, "label": "Fold change", "physics": false, "shape": null, "size": 10, "widthConstraint": 100, "x": -750, "y": -200}, {"fixed": true, "font": {"size": 16}, "group": "table", "id": "Other table", "is_legend": true, "label": "Other table", "physics": false, "shape": null, "size": 10, "widthConstraint": 100, "x": -750, "y": -125}, {"fixed": true, "font": {"size": 16}, "group": "geneset", "id": "Gene set", "is_legend": true, "label": "Gene set", "physics": false, "shape": null, "size": 10, "widthConstraint": 100, "x": -750, "y": -50}, {"fixed": true, "font": {"size": 16}, "group": "function", "id": "Function", "is_legend": true, "label": "Function", "physics": false, "shape": null, "size": 10, "widthConstraint": 100, "x": -750, "y": 25}, {"fixed": true, "font": {"size": 16}, "group": "other", "id": "Other output", "is_legend": true, "label": "Other output", "physics": false, "shape": null, "size": 10, "widthConstraint": 100, "x": -750, "y": 100}, {"fixed": true, "font": {"size": 16}, "group": "pipeline", "id": "Pipeline", "is_legend": true, "label": "Pipeline", "physics": false, "shape": null, "size": 10, "widthConstraint": 100, "x": -750, "y": 175}]);
+                  edges = new vis.DataSet([{"arrows": "to", "from": 0, "to": 1, "width": 1}, {"arrows": "to", "from": 1, "to": 2, "width": 1}, {"arrows": "to", "from": 2, "to": 3, "width": 1}, {"arrows": "to", "from": 2, "to": 4, "width": 1}, {"arrows": "to", "from": 2, "to": 5, "width": 1}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {"configure": {"enabled": false}, "nodes": {"font": {"strokeWidth": 3}}, "groups": {"count": {"color": "#0D47A1", "shape": "dot"}, "diffexp": {"color": "#BF360C", "shape": "dot"}, "foldchange": {"color": "#00838F", "shape": "dot"}, "table": {"color": "#F7B30A", "shape": "dot"}, "geneset": {"color": "#BA68C8", "shape": "dot"}, "function": {"color": "#00D4D8", "shape": "triangleDown"}, "other": {"color": "#228B22", "shape": "square"}, "pipeline": {"color": "#FF66B8", "shape": "diamond"}, "root": {"color": "#00D4D8", "shape": "box"}}, "edges": {"color": {"inherit": false}, "smooth": {"type": "cubicBezier", "roundness": 0.4, "forceDirection": "horizontal"}, "width": 2, "selectionWidth": 3}, "layout": {"hierarchical": {"enabled": true, "levelSeparation": 200, "nodeSpacing": 22, "treeSpacing": 65, "direction": "LR", "sortMethod": "directed", "shakeTowards": "roots"}}, "physics": {"solver": "repulsion", "stabilization": {"fit": true}}, "interaction": {"navigationButtons": true}};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+                  // Add a one-time event listener for stabilization
+network.once("stabilizationIterationsDone", function () {
+    // Fit the network to view
+    network.fit();
+
+    // Disable further fitting
+    network.setOptions({physics: {stabilization: {fit: false}}});
+});
+// use the "drawPath" event to redraw the graph with path to root highlighted
+network.on("click", drawPath);
+
+function drawPath(params) {
+    // if something is selected:
+    if (params.nodes.length > 0) {
+        highlightActive = true;
+        var selectedNode = params.nodes[0];
+        var selectedNodeData = allNodes[selectedNode];
+
+        // Check if the selected node is a legend node
+        if (selectedNodeData.is_legend) {
+            var groupToHighlight = selectedNodeData.group;
+            var nodesToSelect = [];
+            var edgesToSelect = [];
+
+            for (var nodeId in allNodes) {
+                var node = allNodes[nodeId];
+                if (node.group === groupToHighlight && !node.is_legend) {
+                    node.color = nodeColors[nodeId];
+                    node.width = 2;  // make nodes bolder
+                    if (node.hiddenLabel !== undefined) {
+                        node.label = node.hiddenLabel;
+                        node.hiddenLabel = undefined;
+                    }
+                    nodesToSelect.push(nodeId);
+                } else if (!node.is_legend) {
+                    node.color = "rgba(200,200,200,0.5)";
+                    node.width = 1;  // reset width
+                    if (node.hiddenLabel === undefined) {
+                        node.hiddenLabel = node.label;
+                        node.label = undefined;
+                    }
+                }
+            }
+        } else {
+            var nodesToSelect = [selectedNode];
+            var edgesToSelect = [];
+
+            // mark all nodes as hard to read.
+            for (var nodeId in allNodes) {
+                allNodes[nodeId].color = "rgba(200,200,200,0.5)";
+                allNodes[nodeId].width = 1;  // reset width
+                if (allNodes[nodeId].hiddenLabel === undefined) {
+                    allNodes[nodeId].hiddenLabel = allNodes[nodeId].label;
+                    allNodes[nodeId].label = undefined;
+                }
+            }
+
+            // Function to get all ancestors of a node
+            function getAncestors(nodeId) {
+                var ancestors = [];
+                var queue = [nodeId];
+
+                while (queue.length > 0) {
+                    var currentNode = queue.shift();
+                    var connectedEdges = network.getConnectedEdges(currentNode);
+                    var connectedNodes = network.getConnectedNodes(currentNode, 'from');
+
+                    for (var i = 0; i < connectedNodes.length; i++) {
+                        if (!ancestors.includes(connectedNodes[i])) {
+                            ancestors.push(connectedNodes[i]);
+                            queue.push(connectedNodes[i]);
+                            // Find the edge connecting these nodes and add to edgesToSelect
+                            var edge = connectedEdges.find(edgeId => network.getConnectedNodes(edgeId).includes(connectedNodes[i]));
+                            if (edge) edgesToSelect.push(edge);
+                        }
+                    }
+                }
+
+                return ancestors;
+            }
+
+            // Get all ancestors of the selected node
+            var ancestors = getAncestors(selectedNode);
+            nodesToSelect = nodesToSelect.concat(ancestors);
+
+            // Highlight all ancestors and the selected node
+            for (var i = 0; i < nodesToSelect.length; i++) {
+                var nodeId = nodesToSelect[i];
+                allNodes[nodeId].color = nodeColors[nodeId];
+                allNodes[nodeId].width = 2;  // make nodes bolder
+                if (allNodes[nodeId].hiddenLabel !== undefined) {
+                    allNodes[nodeId].label = allNodes[nodeId].hiddenLabel;
+                    allNodes[nodeId].hiddenLabel = undefined;
+                }
+            }
+        }
+    } else if (highlightActive === true) {
+        // reset all nodes
+        for (var nodeId in allNodes) {
+            allNodes[nodeId].color = nodeColors[nodeId];
+            allNodes[nodeId].width = 1;  // reset width
+            if (allNodes[nodeId].hiddenLabel !== undefined) {
+                allNodes[nodeId].label = allNodes[nodeId].hiddenLabel;
+                allNodes[nodeId].hiddenLabel = undefined;
+            }
+        }
+        highlightActive = false;
+        nodesToSelect = [];
+        edgesToSelect = [];
+    }
+
+    // Update the nodes in the network
+    network.setData({nodes: new vis.DataSet(Object.values(allNodes)), edges: data.edges});
+
+    // Set selection
+    network.setSelection({nodes: nodesToSelect, edges: edgesToSelect}, {highlightEdges: false});
+}
+// make a custom popup
+                      var popup = document.createElement("div");
+                      popup.className = 'popup';
+                      popupTimeout = null;
+                      popup.addEventListener('mouseover', function () {
+                          console.log(popup)
+                          if (popupTimeout !== null) {
+                              clearTimeout(popupTimeout);
+                              popupTimeout = null;
+                          }
+                      });
+                      popup.addEventListener('mouseout', function () {
+                          if (popupTimeout === null) {
+                              hidePopup();
+                          }
+                      });
+                      container.appendChild(popup);
+
+
+                      // use the popup event to show
+                      network.on("showPopup", function (params) {
+                          showPopup(params);
+                      });
+
+                      // use the hide event to hide it
+                      network.on("hidePopup", function (params) {
+                          hidePopup();
+                      });
+
+                      // hiding the popup through css
+                      function hidePopup() {
+                          popupTimeout = setTimeout(function () { popup.style.display = 'none'; }, 500);
+                      }
+
+                      // showing the popup
+                      function showPopup(nodeId) {
+                          // get the data from the vis.DataSet
+                          var nodeData = nodes.get([nodeId]);
+                          popup.innerHTML = nodeData[0].title;
+
+                          // get the position of the node
+                          var posCanvas = network.getPositions([nodeId])[nodeId];
+
+                          // get the bounding box of the node
+                          var boundingBox = network.getBoundingBox(nodeId);
+
+                          //position tooltip:
+                          posCanvas.x = posCanvas.x + 0.5 * (boundingBox.right - boundingBox.left);
+
+                          // convert coordinates to the DOM space
+                          var posDOM = network.canvasToDOM(posCanvas);
+
+                          // Give it an offset
+                          posDOM.x += 10;
+                          posDOM.y -= 20;
+
+                          // show and place the tooltip.
+                          popup.style.display = 'block';
+                          popup.style.top = posDOM.y + 'px';
+                          popup.style.left = posDOM.x + 'px';
+                      }
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>
