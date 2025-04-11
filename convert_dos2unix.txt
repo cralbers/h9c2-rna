@@ -1,0 +1,1 @@
+tr -d '\r' < fastqc_all.sh>fastqc_all_unix.sh

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<expression-data-visualizations>
+  <color-sets>
+    <ColorSet name="color set">
+      <no-criteria-met red="180" green="220" blue="180" />
+      <no-gene-found red="180" green="220" blue="220" />
+      <no-data-found red="216" green="216" blue="216" />
+      <ColorGradient name="gradient">
+        <color-value value="-7.5">
+          <color red="0" green="0" blue="255" />
+        </color-value>
+        <color-value value="0.0">
+          <color red="255" green="255" blue="255" />
+        </color-value>
+        <color-value value="7.0">
+          <color red="255" green="0" blue="0" />
+        </color-value>
+      </ColorGradient>
+    </ColorSet>
+  </color-sets>
+  <visualizations>
+    <visualization name="auto-generated">
+      <method name="class org.pathvisio.visualization.plugins.TextByExpression" font="Arial narrow-PLAIN-10" round-to="2" mean="false">
+        <sample-id>5</sample-id>
+        <sample-id>7</sample-id>
+      </method>
+      <method name="class org.pathvisio.visualization.plugins.DataNodeLabel" display="DataNode label" adjustFontSize="false" font="Arial narrow-PLAIN-10" overlay="true" alignment="0">
+        <font-color red="0" green="0" blue="0" />
+      </method>
+      <method name="class org.pathvisio.visualization.plugins.ColorByExpression" drawLine="false">
+        <lineColor red="0" green="0" blue="0" />
+        <sample id="5" colorset="color set" ambigious="1" maintain-aspect-ratio="true" />
+      </method>
+      <method name="class org.pathvisio.visualization.plugins.LegendVisualization" />
+    </visualization>
+  </visualizations>
+</expression-data-visualizations>
+
